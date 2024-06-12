@@ -15,6 +15,18 @@ const getState = ({ getStore, getActions, setStore }) => {
 			]
 		},
 		actions: {
+			getCharacter : async() => {
+				try {
+					const resp = await fetch (`${getStore().baseUrl}/peolple`);
+					const data = await resp.json();
+					console.log('get character',  character);
+					setStore({people : data.results})
+					
+				} catch (error) {
+					console.log('error getting character', error);
+					
+				}
+			},
 			// Use getActions to call a function within a fuction
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");
